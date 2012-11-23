@@ -9,7 +9,7 @@
   <packaging>pom</packaging>
 
 	<properties>
-		<moskito.version>2.0.3-SNAPSHOT</moskito.version>
+		<moskito.version>2.1.0</moskito.version>
 	</properties>
 
 	<modules>
