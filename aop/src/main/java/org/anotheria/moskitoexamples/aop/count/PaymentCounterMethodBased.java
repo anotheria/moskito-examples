@@ -3,7 +3,7 @@ package org.anotheria.moskitodemo.counter;
 import net.anotheria.moskito.aop.annotation.Count;
 
 /**
- * TODO comment this class
+ * Example of method based counters, only annotated methods are counted.
  *
  * @author lrosenberg
  * @since 19.11.12 09:15
