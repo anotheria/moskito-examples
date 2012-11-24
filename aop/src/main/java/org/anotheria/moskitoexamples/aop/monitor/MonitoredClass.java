@@ -1,4 +1,4 @@
-package org.anotheria.moskitoexamples.aop;
+package org.anotheria.moskitoexamples.aop.monitor;
 
 import net.anotheria.moskito.aop.annotation.DontMonitor;
 import net.anotheria.moskito.aop.annotation.Monitor;
