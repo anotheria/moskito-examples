@@ -1,4 +1,4 @@
-package org.anotheria.moskitoexamples.aop;
+package org.anotheria.moskitoexamples.aop.monitor;
 
 import net.anotheria.moskito.core.dynamic.OnDemandStatsProducer;
 import net.anotheria.moskito.core.dynamic.OnDemandStatsProducerException;
@@ -6,6 +6,7 @@ import net.anotheria.moskito.core.predefined.ServiceStats;
 import net.anotheria.moskito.core.registry.IProducerRegistryAPI;
 import net.anotheria.moskito.core.registry.ProducerRegistryAPIFactory;
 import net.anotheria.moskito.core.registry.ProducerRegistryFactory;
+import org.anotheria.moskitoexamples.aop.monitor.MonitoredClass;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
