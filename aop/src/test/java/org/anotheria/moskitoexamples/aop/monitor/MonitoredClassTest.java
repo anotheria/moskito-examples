@@ -6,7 +6,6 @@ import net.anotheria.moskito.core.predefined.ServiceStats;
 import net.anotheria.moskito.core.registry.IProducerRegistryAPI;
 import net.anotheria.moskito.core.registry.ProducerRegistryAPIFactory;
 import net.anotheria.moskito.core.registry.ProducerRegistryFactory;
-import org.anotheria.moskitoexamples.aop.monitor.MonitoredClass;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -21,6 +20,12 @@ import static org.junit.Assert.fail;
  * Please check https://confluence.opensource.anotheria.net/display/MSK/Integration+Guide for details.
  */
 public class MonitoredClassTest{
+	@BeforeClass
+	public static void setup(){
+		//disable builtin producers
+		System.setProperty("JUNITTEST", Boolean.TRUE.toString());
+	}
+
 	@Test
 	public void test() throws OnDemandStatsProducerException {
 		MonitoredClass testObject = new MonitoredClass();
@@ -62,12 +67,6 @@ public class MonitoredClassTest{
 		//another way to prove is, is to count:
 		assertEquals(3, producer.getStats().size());
 
-	}
-
-	@BeforeClass
-	public static void setup(){
-		//disable builtin producers
-		System.setProperty("JUNITTEST", Boolean.TRUE.toString());
 	}
 
 	@AfterClass
