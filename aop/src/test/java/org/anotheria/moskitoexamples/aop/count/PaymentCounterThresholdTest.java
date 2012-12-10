@@ -1,4 +1,4 @@
-package org.anotheria.moskitodemo.counter;
+package org.anotheria.moskitoexamples.aop.count;
 
 import net.anotheria.moskito.core.dynamic.OnDemandStatsProducerException;
 import net.anotheria.moskito.core.registry.ProducerRegistryFactory;

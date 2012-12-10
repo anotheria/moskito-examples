@@ -1,4 +1,4 @@
-package org.anotheria.moskitodemo.counter;
+package org.anotheria.moskitoexamples.aop.count;
 
 import net.anotheria.moskito.aop.annotation.Count;
 

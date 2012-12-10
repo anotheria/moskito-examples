@@ -12,60 +12,52 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
-
 
 /**
- * This is an example test for moskito aop integration.
- * Please check https://confluence.opensource.anotheria.net/display/MSK/Integration+Guide for details.
+ * TODO comment this class
+ *
+ * @author lrosenberg
+ * @since 27.11.12 08:34
  */
-public class MonitoredClassTest{
-	@BeforeClass
-	public static void setup(){
-		//disable builtin producers
-		System.setProperty("JUNITTEST", Boolean.TRUE.toString());
-	}
-
+public class ClassWithMonitoredMethodTest {
 	@Test
 	public void test() throws OnDemandStatsProducerException {
-		MonitoredClass testObject = new MonitoredClass();
+		ClassWithMonitoredMethod testObject = new ClassWithMonitoredMethod();
 
 		//now call all methods
 		for (int i=0; i<100; i++){
 			testObject.firstMethod();
 			testObject.secondMethod();
-			testObject.doNotMonitorMe();
 		}
 
 		//test is finished, now to ensure that the class is really monitored...
 		//you don't have to do this, as your data will probably show up in webui or logs or whatever configured.
 		IProducerRegistryAPI registryAPI = new ProducerRegistryAPIFactory().createProducerRegistryAPI();
-		OnDemandStatsProducer<ServiceStats> producer = (OnDemandStatsProducer<ServiceStats>)registryAPI.getProducer("MonitoredClass");
+		OnDemandStatsProducer<ServiceStats> producer = (OnDemandStatsProducer<ServiceStats>)registryAPI.getProducer("ClassWithMonitoredMethod");
 		assertNotNull(producer);
 
+		//the firstMethod is monitored and should therefor produce stats.
 		ServiceStats firstMethodStats = producer.getStats("firstMethod");
 		assertNotNull(firstMethodStats);
 		assertEquals(100, firstMethodStats.getTotalRequests());
 
-		ServiceStats secondMethodStats = producer.getStats("secondMethod");
-		assertNotNull(secondMethodStats);
-		assertEquals(100, secondMethodStats.getTotalRequests());
+		//a way to prove that secondMethod is not count, is to count:
+		assertEquals(2, producer.getStats().size());
 
-		//the cumulated stats should contain both
+
+		//the secondMethodStats is NOT monitored and should therefor produce stats.
+		ServiceStats secondMethodStats = producer.getStats("secondMethod");
+		//even not monitored, the stats object will be created on the fly.
+		assertNotNull(secondMethodStats);
+		//but there will be no data.
+		assertEquals(0, secondMethodStats.getTotalRequests());
+
+		//the cumulated stats should contain only firstmethod, therefore 100
 		ServiceStats cumulatedStats = producer.getDefaultStats();
 		assertNotNull(cumulatedStats);
-		assertEquals(200, cumulatedStats.getTotalRequests());
+		assertEquals(100, cumulatedStats.getTotalRequests());
 
 
-		//now ensure that the doNotMonitorMe is not being monitored.
-		//we can't call getStats("doNotMonitorMe") directly, because onDemandStatsProducer would create it on the fly, instead we iterate ober exising stats
-		for (ServiceStats stats : producer.getStats()){
-			if (stats.getName().equals("doNotMonitorMe"))
-				fail("Found doNotMonitorMe stats!");
-		}
-
-		//another way to prove is, is to count:
-		assertEquals(3, producer.getStats().size());
 
 	}
 
@@ -73,4 +65,11 @@ public class MonitoredClassTest{
 	public static void cleanup(){
 		ProducerRegistryFactory.reset();
 	}
+	@BeforeClass
+	public static void setup(){
+		//disable builtin producers
+		System.setProperty("JUNITTEST", Boolean.TRUE.toString());
+	}
+
+
 }
