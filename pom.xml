@@ -15,6 +15,7 @@
 	<modules>
 		<module>aop</module>
         <module>dynamicproxy</module>
+        <module>callexecution</module>
     </modules>
 <!--
 	<scm>
