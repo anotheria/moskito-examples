@@ -16,6 +16,7 @@
 		<module>aop</module>
         <module>dynamicproxy</module>
         <module>callexecution</module>
+        <module>spring2</module>
     </modules>
 <!--
 	<scm>
