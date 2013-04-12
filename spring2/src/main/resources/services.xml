@@ -16,11 +16,14 @@
     ">
 
 
-    <bean id="BService" class="org.anotheria.moskitoexamples.spring2.b.BServiceImpl">
-    </bean>
+    <bean id="BService" class="org.anotheria.moskitoexamples.spring2.b.BServiceImpl"/>
+    <bean id="CService" class="org.anotheria.moskitoexamples.spring2.c.CServiceImpl"/>
+    <bean id="DService" class="org.anotheria.moskitoexamples.spring2.d.DServiceImpl"/>
 
     <bean id="AService" class="org.anotheria.moskitoexamples.spring2.a.AServiceImpl">
         <property name="bService" ref="BService"/>
+        <property name="cService" ref="CService"/>
+        <property name="dService" ref="DService"/>
     </bean>
 
 

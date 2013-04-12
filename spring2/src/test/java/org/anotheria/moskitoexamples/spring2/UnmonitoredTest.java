@@ -19,6 +19,6 @@ public class UnmonitoredTest {
 		ApplicationContext context = new ClassPathXmlApplicationContext(
 				new String[] {"services.xml"});
 		AService service = (AService)context.getBean("AService");
-		assertEquals(100, service.echoMethodA(100));
+		assertEquals(2*100, service.echoMethodA(100));
 	}
 }

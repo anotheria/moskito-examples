@@ -1,6 +1,8 @@
 package org.anotheria.moskitoexamples.spring2.a;
 
 import org.anotheria.moskitoexamples.spring2.b.BService;
+import org.anotheria.moskitoexamples.spring2.c.CService;
+import org.anotheria.moskitoexamples.spring2.d.DService;
 import org.springframework.beans.factory.annotation.Required;
 
 /**
@@ -13,9 +15,14 @@ public class AServiceImpl implements AService{
 
 	private BService bService;
 
+	private CService cService;
+
+	private DService dService;
+
 	@Override
 	public long echoMethodA(long value) {
-		return bService.echoServiceB(value);
+		dService.debugCall();
+		return bService.echoServiceB(value)+cService.echo(value);
 	}
 
 	public BService getbService() {
@@ -25,6 +32,23 @@ public class AServiceImpl implements AService{
 	@Required
 	public void setbService(BService bService) {
 		this.bService = bService;
+	}
+
+	public CService getcService() {
+		return cService;
+	}
+
+	@Required
+	public void setcService(CService cService) {
+		this.cService = cService;
+	}
+	public DService getdService() {
+		return dService;
+	}
+
+	@Required
+	public void setdService(DService dService) {
+		this.dService = dService;
 	}
 
 
