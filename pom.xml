@@ -17,6 +17,7 @@
         <module>dynamicproxy</module>
         <module>callexecution</module>
         <module>spring2</module>
+        <module>ehcache</module>
     </modules>
 <!--
 	<scm>
