@@ -27,17 +27,14 @@ public class Browser {
         /* initializing browser cache */
         cache = CacheManager.getInstance().getCache("browser-cache");
         /* making this cache to be monitored (statistics updates every 5 seconds) */
-        cache = new MonitoredEhcache(cache, Statistics.STATISTICS_ACCURACY_GUARANTEED, 5*1000L);
+        cache = new MonitoredEhcache(cache, Statistics.STATISTICS_ACCURACY_BEST_EFFORT, 5*1000L);
     }
 
 
     public void renderWebpage(String url) {
         Webpage webpage = openWebpage(url);
-//        System.out.println("Page URL:");
-//        System.out.println(webpage.getUrl());
-//        System.out.println("Page content:");
-//        System.out.println(webpage.getContent());
-    };
+        System.out.println("Page URL: " + webpage.getUrl() + "\nPage content: " + webpage.getContent() + "\n");
+    }
 
     private Webpage openWebpage(String url) {
         Webpage webpage = openWebpageFromCache(url);

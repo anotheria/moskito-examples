@@ -3,15 +3,15 @@ package org.moskito.examples.ehcache;
 import java.io.Serializable;
 
 /**
- * Just an ordinary web-page.
+ * Just an ordinary web-page. Implements {@link java.io.Serializable} in order to be available for caching.
  *
  * @author Vladyslav Bezuhlyi
  */
 public class Webpage implements Serializable {
 
-    private String url;
+    private final String url;
 
-    private String content;
+    private final String content;
 
 
     public Webpage(String url, String content) {
@@ -24,16 +24,8 @@ public class Webpage implements Serializable {
         return url;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public String getContent() {
         return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 
     @Override
