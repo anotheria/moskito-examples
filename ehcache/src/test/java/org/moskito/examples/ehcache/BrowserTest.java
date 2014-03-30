@@ -65,7 +65,7 @@ public class BrowserTest {
 
     @AfterClass
     public static void cleanup() {
-        /* last thing we should do */
+        /* notice the insides of the last thing we should do */
         browser.exit();
     }
 
