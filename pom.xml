@@ -17,6 +17,7 @@
         <module>dynamicproxy</module>
         <module>callexecution</module>
         <module>spring2</module>
+        <module>ehcache</module>
     </modules>
 <!--
 	<scm>
@@ -64,5 +65,18 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>provided</id>
+            <url>http://nexus.anotheria.net/nexus/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
 </project>
